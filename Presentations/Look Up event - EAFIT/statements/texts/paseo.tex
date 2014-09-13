@@ -1,0 +1,43 @@
+\begin{problem}{El paseo de Roxana}{entrada estándar}{salida estándar}{3 segundos}{paseo}
+
+Roxana está planeando un paseo a su ciudad favorita, ella conoce tanto la ciudad, tanto asi que conoce las rutas que llegan a ella. Lastimosamente, ella posee un presupuesto muy apretado, por esto, te pidió el favor de calcular cuál sería el mínimo costo para realizar dicho viaje.
+
+\InputFile
+
+La primera línea de la entrada contiene dos enteros $n$ $(1 \leq n \leq 100)$ y $m$ $(1 \leq m \leq 500)$, representando el número de ciudades y la cantidad de rutas que conoce respectivamente. Las ciudades están numeradas de 1 hasta $n$.\\
+Después, siguen $m$ líneas, cada una contiene tres enteros $a$, $b$ y $w$ $(1 \leq a, b \leq n)$, $(w \geq 0)$ que describen respectivamente, la ciudad origen, la ciudad destino y el costo de la ruta. Lastimosamente, las rutas no son en ambos sentidos.
+
+\OutputFile
+
+Deberás imprimir el mínimo costo de ir de la ciudad 1 hasta la ciudad $n$, si no es posible hacer este viaje el programa debe imprimir -1.
+
+\Example
+
+\begin{example}
+\exmp{
+4 5
+1 2 3
+1 3 2
+2 3 4
+2 4 2
+3 4 1
+}{
+3
+}%
+\end{example}
+
+\Example
+
+\begin{example}
+\exmp{
+4 5
+1 2 4
+1 3 1
+2 3 5
+4 2 6
+4 3 7
+}{
+-1
+}%
+\end{example}
+\end{problem}

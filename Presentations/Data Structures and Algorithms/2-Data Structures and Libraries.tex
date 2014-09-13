@@ -1,0 +1,594 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{listings}
+
+\setbeamercovered{invisible}
+\usetheme{Frankfurt}
+\usefonttheme{serif}
+
+% Configurar los listings (Códigos)
+\renewcommand{\lstlistingname}{Código}
+\lstset{
+	language=C++,               % Lenguaje
+	basicstyle=\ttfamily\tiny,  % Tipo de fuente
+	keywordstyle=\color{blue},  % Color de palabras clave
+	stringstyle=\color{red},    % Color de strings
+	commentstyle=\color{gray},  % Color de comentarios
+	showstringspaces=false,     % No muestrar el _ cuando el string tiene espacios
+	breaklines = true,          % Partir las líneas largas
+	breakatwhitespace=true,	    % Partir las líneas en un espacio
+	numbers=left,				% Numerar las líneas a la izq
+	numberstyle=\tiny,			% Poner los números de las líneas pequeños
+	numberblanklines=true,      % Numerar las líneas en blanco
+	columns=fullflexible,       % No perder el formato al dejar los espacios
+	keepspaces=true,   			% Dejar los espacios insertados
+	frame=tb,					% Poner el recuadro
+}
+
+\AtBeginSection[]{%
+  \begin{frame}<beamer>
+    \frametitle{Contenido}
+    \tableofcontents[sectionstyle=show/hide,subsectionstyle=hide/show/hide]
+  \end{frame}
+  \addtocounter{framenumber}{-1}% If you don't want them to affect the slide number
+}
+
+\title{Semillero de Programación}
+\subtitle{Cap 2. Estructuras de datos y bibliotecas}
+\author{Santiago Vanegas Gil}
+
+\institute{Universidad EAFIT}
+\date{8 de agosto del 2014}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{Contenido}
+	\tableofcontents
+\end{frame}
+
+
+\begin{section}{Estructuras de datos lineales}
+\begin{subsection}{Arreglos estáticos}
+	\begin{frame}[fragile]
+		\frametitle{Arreglos estáticos}
+		\begin{itemize}
+			\item{Es una colección de datos secuenciales que son guardados para luego ser consultados basandose en sus índices.}
+			\item{Es claramente la estructura más común en maratones de programación.}
+			\item{Típicamente se usan arreglos de 1, 2 y 3 dimensiones como máximo.}
+			\item{Por ejemplo, un arreglo de 10 posiciones llamado $a$ puede ser representado así:}
+			\begin{figure}
+				\includegraphics[width = 0.7\textwidth]{src/arreglo.jpg}
+			\end{figure}			
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}[fragile]
+		\frametitle{Arreglos estáticos}
+		A continuación, aprenderemos cómo declarar arreglos estáticos en C++.
+		\begin{block}{Declaración de arreglos estáticos en C++}
+			\begin{verbatim}
+				tipo_de_dato nombre [número_de_elementos];
+			\end{verbatim}
+			Ejemplos:\\
+			\begin{verbatim}
+				int arr [10];
+				string words [50];
+			\end{verbatim}			
+		\end{block}		
+	\end{frame}
+	
+	\begin{frame}[fragile]
+		\frametitle{Arreglos estáticos}
+		Ahora veamos cómo se declaran en Java.
+		\begin{block}{Declaración de arreglos estáticos en Java}
+			\begin{verbatim}
+				tipo_de_dato [] nombre = new tipo_de_dato [tamaño];
+			\end{verbatim}
+			Ejemplo:
+			\begin{verbatim}
+				int [] nums = new int[10];
+				String [] words = new String[5];
+			\end{verbatim}	
+		\end{block}
+		\begin{figure}
+		\end{figure}		
+	\end{frame}
+	
+	\begin{frame}[fragile]
+		\frametitle{Arreglos estáticos}
+		\small{Un ejemplo de uso de arreglos estátios es leerlo y luego recorrerlo hasta encontrar un 0.}
+		\begin{lstlisting}
+			#include <iostream>
+			
+			using namespace std;
+
+			const int MAXN = 10;
+			int nums[MAXN];
+			
+			int
+			main() {
+			    for (int i = 0; i < sizeof(nums) / sizeof(nums[0]); i++) {
+			        cin >> nums[i];
+			    }
+			    for (int i = 0; i < sizeof(nums) / sizeof(nums[0]); i++) {
+			        if (nums[i] == 0) {
+			            cout << "I found a 0 in position: " << i << endl;
+			            break;
+			        }
+			    }
+			    return 0;
+			}
+		\end{lstlisting}		
+	\end{frame}	
+\end{subsection}
+\begin{subsection}{Arreglos dinámicos}
+	\begin{frame}[fragile]
+		\frametitle{Arreglos dinámicos}
+		\begin{itemize}
+			\item {Los arreglos dinámicos o vectores son estructuras similares a los arreglos estáticos, excepto que son diseñados para permitir cambio de tamaño en tiempo de ejecución.}
+			\item {Al igual que los arreglos, los elementos pueden ser accedidos por medio del índice de su posición, empezando por en índice 0.}
+			\item {Las operaciones comúnes en vectores en C++ son: $push\_back()$, operador $[]$ o $at()$, $clear()$, $erase()$, $size()$.}
+			\item {En C++, para hacer uso de vectores es necesario importar la biblioteca $vector$, y en Java $ArrayList$.}
+		\end{itemize}
+		\begin{figure}
+			\includegraphics[width = 0.7\textwidth]{src/vector.jpg}
+		\end{figure}
+	\end{frame}
+	
+	\begin{frame}[fragile]
+		\frametitle{Arreglos dinámicos}
+		Veamos un ejemplo del uso de vectores en C++:
+		\begin{lstlisting}
+			#include <iostream>
+			#include <vector> //Remember to import the library
+
+			using namespace std;
+			
+			int
+			main() {
+			    vector <int> nums(5, 5); //Initial size 5 with values {5, 5, 5, 5, 5}
+			    for (int i = 0; i < nums.size(); i++) {
+			        nums[i] = i * 2; //Store new value in position i
+			    }
+			    for (int i = 0; i < nums.size(); i++) {
+			        cout << nums[i] << " ";
+			    }
+			    //Output will be: 0 2 4 6 8
+			    return 0;
+			}
+		\end{lstlisting}
+	\end{frame}
+\end{subsection}
+\begin{subsection}{Arreglo de booleanos (bitset)}
+	\begin{frame}[fragile]
+		\frametitle{Arreglo de booleanos}
+		\begin{itemize}
+			\item {Los arreglos de booleanos o $bitsets$ sólo se almacenan valores boleanos, esto es, $1/true$ o $0/false$.}
+			\item {Permite almacenar muchos bits de una forma eficiente}
+			\item {La biblioteca $bitset$ en C++ soporta operaciones útiles como $reset()$, $set()$, $test()$ y el operador [].}
+		\end{itemize}
+	\end{frame}
+	
+	\begin{frame}[fragile]
+		\frametitle{Arreglo de booleanos}
+		Veamos un ejemplo del uso de bitsets en C++:
+		\begin{lstlisting}
+			#include <iostream>
+			#include <bitset> //Remember to import the library
+			#include <string> //Needed below
+
+			using namespace std;
+			
+			int
+			main() {
+			    bitset<16> bits1; //Create an empty bitset
+			    bitset<16> bits2 (0xFA2); //Create a bitset from an hexadecimal value
+			    bitset<16> bits3 (string("1110101")); //Bitset from a string
+			    
+			    cout << "bits1: " << bits1 << endl; //bits1: 0000000000000000
+			    cout << "bits2: " << bits2 << endl; //bits2: 0000111110100010
+			    cout << "bits3: " << bits3 << endl; //bits3: 0000000001110101
+			    cout << "bits2 has " << bits2.count() << " ones" << endl; //bits2 has 7 ones
+			    cout << "bits2 is: " << bits2.to_ulong() << endl; //bits2 is: 4002
+			    return 0;
+			}
+		\end{lstlisting}
+	\end{frame}
+\end{subsection}
+
+%% MÁSCARAS DE BITS %%
+\begin{subsection}{Máscaras de bits}
+	\begin{frame}[fragile]
+		\frametitle{Máscaras de bits}
+		\begin{itemize}
+			\item {Podemos usar enteros para representar pequeños conjutos de valores booleanos.}
+			\item {Usar operaciones de bit a bit con enteros, en algunos casos, resulta ser mucho más eficiente comparado con vectores de booleanos o $bitsets$.}
+			\item {Pueden facilitar bastante la implementación de un problema y ganar tiempo en una maratón.}
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Máscaras de bits}
+		Antes de comenzar con todas las operaciones, recuerda que los bits se cuentan de derecha a izquierda, siendo la derecha el bit menos significativo y la izquierda el bit más significativo.
+		\begin{block}{Operación shifting}
+			A un conjunto de bits se le puede hacer $Shifting$ hacia la izquierda y derecha, cada dirección se representa con el símbolo $<<$ y $>>$ respectivamente.\\
+		Ejemplo:\\
+		Si se tiene el siguiente conjunto de bits y se le hace $Shift$ a la derecha 3 veces obtendremos el siguiente resultado:\\
+			\begin{itemize}
+				\item{0010010} - Conjunto original
+				\item{0001001} - Primer shift
+				\item{0000100} - Segundo shift (Pérdida bit menos significativo)
+				\item{0000010} - Tercer shift
+			\end{itemize}
+		\end{block}		
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Máscaras de bits}
+		\begin{block}{Cómo saber si un bit está prendido}
+			Sea S el conjunto de bits, podemos saberlo con la siguiente instrucción:
+			\begin{verbatim}
+				S & (1 << j)
+			\end{verbatim}
+			Donde j es la posición del bit que se quiere consultar.\\
+			Ilustración:
+			\begin{verbatim}
+				Con j  = 4
+				S      = 101010 (bin)
+				1 << 4 = 010000 (bin)
+					         ------ AND
+					         000000 <- El resultado es 0
+					                   el bit no está prendido.
+			\end{verbatim}		
+		\end{block}		
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Máscaras de bits}
+		\begin{block}{Encender el bit j (base 0) de un set}
+			Se debe usar la operación bit a bit \textbf{OR}, veamos:
+			\begin{verbatim}
+				S |= (1 << j)
+			\end{verbatim}
+			\begin{lstlisting}
+				S = 34 (base 10) = 100010 (base 2)
+				j = 3, 1 << j    = 001000 <- bit 1 desplazado 3 veces
+                  				------- OR
+				S = 42 (base 10) = 101010 (base 2)	
+			\end{lstlisting}
+		\end{block}		
+	\end{frame}
+	
+	\begin{frame}[fragile]
+		\frametitle{Máscaras de bits}
+		\begin{block}{Apagar el bit j (base 0) de un set}
+			Se debe usar la operación bit a bit \textbf{AND}, veamos:
+			\begin{verbatim}
+				S &= ~(1 << j)
+			\end{verbatim}
+			\begin{lstlisting}
+				S = 42 (base 10) = 101010 (base 2)
+				j = 1, ~(1 << j) = 111101 <-- Shift y NOT
+                  						------- AND
+				S = 40 (base 10) = 101000	
+			\end{lstlisting}	
+		\end{block}		
+	\end{frame}
+	
+	\begin{frame}[fragile]
+		\frametitle{Máscaras de bits}
+		\begin{block}{Multiplicar o dividir por potencias de 2}
+			Sólo se necesita hacer $Shift$ a los bits del entero la cantidad de veces que equivalen a la potencia.
+			\begin{lstlisting}
+				S                  = 34 (base 10) =  100010 (base 2)
+				S = S << 1 = S * 2 = 68 (base 10) = 1000100 (base 2)
+				S = S >> 2 = S / 4 = 17 (base 10) =   10001 (base 2)
+				S = S >> 1 = S / 2 =  8 (base 10) =    1000 (base 2)
+			\end{lstlisting}	
+			Notar que la división es entera, por lo que se corre el riesgo de perder bits menos significativos.	
+		\end{block}		
+	\end{frame}
+	
+\end{subsection}
+\begin{subsection}{Pilas}
+
+	\begin{frame}[fragile]
+		\frametitle{Pilas}
+		\begin{itemize}
+			\item {Sólo permite una operación aplicada al tope de la pila, es decir, meter o sacar el último elemento del contenedor.}
+			\item {\textbf{El úlltimo elemento que ingresó es el primer elemento en salir (LIFO)}}
+		\end{itemize}
+		\begin{figure}
+			\includegraphics[width = 0.7\textwidth]{src/pila.jpg}
+		\end{figure}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Pilas}
+		Las operaciones que se pueden usar en una pila son:
+		\begin{block}{Operaciones soportadas por una pila}
+			\textbf{push(x)} - Inserta el elemento x al final de la pila.\\
+			\textbf{pop()} - Remueve el último elemento de la pila.\\
+			\textbf{top()} - Retorna el último elemento de la pila, sin removerlo.\\
+			\textbf{empty()} - Retorna verdadero si la pila está vacía.\\
+			\textbf{size()} - Retorna el tamaño de la pila.			
+		\end{block}		
+	\end{frame}
+	
+	\begin{frame}[fragile]
+		\frametitle{Pilas}
+		Veamos un ejemplo de implementación de pila usando la librería de C++ $stack$.
+		\begin{lstlisting}
+			#include <iostream>
+			#include <stack>            // Remember to include stack
+			using namespace std;
+
+			int main(){
+			   stack <int> s;            // Create an integer stack
+			   s.push(10);               // Insert 10
+			   s.push(-1);               // Insert -1
+			   cout << s.top() << endl;  // Print -1
+			   s.pop();                  // Remove -1
+			   cout << s.top() << endl;  // Print 10
+			   cout << s.size() << endl; // The stack size is 1
+			   return 0;
+			}
+		\end{lstlisting}
+	\end{frame}
+
+\end{subsection}
+
+\begin{subsection}{Colas}
+	\begin{frame}[fragile]
+		\frametitle{Colas}
+		\begin{itemize}
+			\item {Las operaciones básicas son insertar al final de la cola, y eliminar del frente de la cola.}
+			\item {\textbf{El primer elemento insertado es el primero en salir de la cola (FIFO)}}
+		\end{itemize}
+		\begin{figure}
+			\includegraphics[width = 0.7\textwidth]{src/cola.jpg}
+		\end{figure}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Colas}
+		Las operaciones que se pueden usar en una cola son:
+		\begin{block}{Operaciones soportadas por una pila}
+			\textbf{push(x)} - Inserta el elemento x al final de la cola.\\
+			\textbf{pop()} - Remueve el primer elemento (frontal) de la cola.\\
+			\textbf{front()} - Retorna el primer elemento de la cola, sin removerlo.\\
+			\textbf{empty()} - Retorna verdadero si la cola está vacía.\\
+			\textbf{size()} - Retorna el tamaño de la cola.			
+		\end{block}		
+	\end{frame}
+	
+	\begin{frame}[fragile]
+		\frametitle{Colas}
+		Veamos un ejemplo de implementación de cola usando la librería de C++ $queue$.
+		\begin{lstlisting}
+			#include <iostream>
+			#include <queue>               // Remember to include queue
+			using namespace std;
+
+			int main(){
+			   queue <int> q;              // Create an integer queue
+			   q.push(10);                 // Insert 10
+			   q.push(-1);                 // Insert -1
+			   cout << q.front() << endl;  // Print 10
+			   q.pop();                    // Delete 10
+			   cout << q.front() << endl;  // Print -1
+			   cout << q.size() << endl;   // The queue size is 1
+			   return 0;
+			}
+		\end{lstlisting}
+	\end{frame}
+
+\end{subsection}
+		
+\end{section}
+
+\begin{section}{Estructuras de datos no lineales}
+	\begin{frame}
+		\frametitle{Estructuras de datos no lineales}
+		\begin{itemize}
+			\item {Para algunos problemas, el almacenamiento lineal no es la mejor opción por su eficiencia en ciertas operaciones.}
+			\item {Colecciones dinámicas no lineales como $Maps$ o $Hash Tables$ son las más adecuadas debido a su rendimiento en operaciones de inserción, búsqueda y eliminación.}
+		\end{itemize}
+	\end{frame}
+
+\begin{subsection}{Arbol binario de búsqueda}
+	\begin{frame}
+		\frametitle{Arbol binario de búsqueda}
+		\begin{itemize}
+			\item {Es una forma de organizar los datos en una estructura de árbol.}
+			\item {Los items en una rama izquierda de un elemento x son menores que x, y los items en una rama derecha de x son mayores o iguales a x.}
+			\item {En C++, implementaciones de árboles binarios de búsqueda están las bibliotecas $map$ y $set$}
+		\end{itemize}
+		\begin{figure}
+			\includegraphics[scale=0.6]{src/bst.jpg}
+		\end{figure}
+	\end{frame}
+
+%%MAPA%%
+\begin{subsubsection}{Mapa}
+	\begin{frame}[fragile]
+		\frametitle{Mapa}
+		\begin{block}{Mapa}
+			Un mapa es un contenedor que guarda parejas de elementos. El primer elemento de la pareja (key) sirve para identificarla y el segundo elemento (mapped value) es el valor asociado a la llave.\\
+		\end{block}
+		\begin{block}{Declaración}
+			\verb|#include <map>|\\
+			\verb|map <tipo_dato_key, tipo_dato_value> nombre;|\\
+			Ejemplos:\\
+			\verb|map <string, int> m;|\\
+			\verb|map <char, int> char2int;|
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}[fragile]
+		\frametitle{Acceso a elementos de un mapa}
+		Los elementos de un mapa se llaman por su llave así:\\ \quad \\
+		\verb|map <string, int> m;|\\
+		\verb|m["Hola"] = 3;|\\
+		\verb|int a = m["Cangrejo"];|\\ \quad \\
+		
+		Para ingresar un elemento se puede hacer así:\\
+		\verb|if (m.count["Nuevo"] == 0) m["Nuevo"] = 123;|\\ \quad \\
+		Con la función \verb|count| se busca cuántas veces está el elemento con la llave \verb|"Nuevo"|. Si el elemento no está, cuando accedemos a él con \verb|[]| éste se crea automáticamente.\\
+		Cuando accedo con \verb|[]| a un elemento del mapa que no existe este se crea con valores por defecto. Para strings es el string vacío \verb|""| y para enteros es el número 0.
+	\end{frame}
+	
+	\begin{frame}
+		\frametitle{Complejidad del mapa}
+		\begin{block}{Complejidad}
+			\begin{itemize}
+				\item Insertar / acceder un elemento al mapa es $O(log\,n \times k)$ donde $n$ es el número de elementos en el mapa y $k$ es el tiempo que toma comparar dos llaves del mapa.
+				\item Comparar dos enteros es $O(1)$, comparar dos strings es $O(m)$ donde $m$ es la longitud de los strings.
+				\item Insertar / acceder un elemento a un mapa con llaves strings es $O(log\,n \times m)$ donde $n$ son los elementos del mapa y $m$ es la longitud del string.
+			\end{itemize}
+		\end{block}
+		\begin{block}{Nota}
+			Los elementos de un mapa se almacenan en orden de acuerdo a una función de comparación. Por defecto la función de comparación es la de menor, es decir que los elementos se almacenan de menor a mayor.
+		\end{block}
+	\end{frame}
+	
+	\begin{frame}[fragile]
+		\frametitle{Recorrer un mapa}
+		Para recorrer un mapa es necesario usar iteradores.\\
+		\begin{lstlisting}
+		#include <iostream>
+		#include <map>
+		using namespace std;
+
+		int main(){
+		   map <string, int> m;
+		   m["b"] = 4;
+		   m["bc"] = 1;
+		   m["a"] = 3;
+		   map <string, int> :: iterator it;
+		   for (it = m.begin(); it != m.end(); it++){
+		      cout << "( " << it->first << " " << it->second << " ) ";
+		      // cout << "( " << (*it).first << " " << (*it).second << " ) ";
+		   }
+		   return 0;
+		}
+		// La funcion imprime ( a 3 ) ( b 4 ) ( bc 1 )
+		\end{lstlisting}
+	\end{frame}
+	
+	\begin{frame}[fragile]
+		\frametitle{Otras funciones en el mapa}
+		Otras funciones que se pueden hacer con el mapa son:\\
+		\begin{itemize}
+			\item Recorrerlo al revés con \verb|rbegin| y \verb|rend|
+			\item Obtener el tamaño con \verb|size|
+			\item Borrar el contenido con \verb|clear|
+			\item Insertar elementos (si no están antes) con \verb|emplace|
+			\item Borrar elementos con \verb|erase|
+			\item Buscar un elemento con \verb|find|
+		\end{itemize}
+		\quad \\
+		Para más información mirar \url{http://www.cplusplus.com/reference/map/map/}
+	\end{frame}
+\end{subsubsection}
+%% SET %%
+\begin{subsubsection}{Set}
+	\begin{frame}[fragile]
+		\frametitle{Set}
+		\begin{block}{Set}
+			Un set es un contenedor que guarda conjuntos, es decir grupos de elementos iguales donde cada elemento aparece una sola vez.\\
+			Los elementos de un set se almacenan en orden de acuerdo a una función de comparación. Por defecto la función de comparación es la de menor, es decir que los elementos se almacenan de menor a mayor.\\
+		\end{block}
+		\begin{block}{Declaración}
+			\verb|#include <set>|\\
+			\verb|set <tipo_dato> nombre;|\\
+			Ejemplos:\\
+			\verb|set <string> s;|\\
+			\verb|set <int> amigos;|
+		\end{block}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Set}
+		Sobre un set se pueden hacer las siguientes operaciones.
+		\begin{description}
+			\item[insert] Inserta un elemento al set. Ejemplo: \verb|amigos.insert(9)|
+			\item[count] Cuenta cuántas veces aparece un elemento (0 o 1 vez). Ejemplo: \verb|amigos.count(3)|
+			\item[find] Retorna un iterador al lugar donde está el elemento. Ejemplo: \verb|amigos.find(3)|
+			\item[erase] Elimina un elemento del set. Ejemplo: \verb|amigos.erase(amigos.find(3))|
+		\end{description}
+		Todas las operaciones anteriores tienen una complejidad $O(log\,n \times k)$ donde $n$ es el número de elementos del set y $k$ es el tiempo que toma comparar dos elementos.\\
+		Para más información mirar \url{http://www.cplusplus.com/reference/set/set/}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{Recorrer un set}
+		Para recorrer un set es necesario usar iteradores.\\
+		\begin{lstlisting}
+		#include <iostream>
+		#include <set>
+		using namespace std;
+
+		int main(){
+		   set <int> s;
+		   s.insert(4); 
+		   s.insert(-1);
+		   s.insert(3);
+		   s.insert(4);
+		   set <int> :: iterator it;
+		   for (it = s.begin(); it != s.end(); it++){
+		      cout << *it << " ";
+		   }
+		   return 0;
+		}
+		// La funcion imprime -1 3 4
+		\end{lstlisting}
+	\end{frame}
+\end{subsubsection}
+%% PRIORITY QUEUE %%
+\begin{subsubsection}{Cola de prioridad}
+	\begin{frame}[fragile]
+		\frametitle{Cola de prioridad}
+		Un heap se puede representar en C++ como una cola de prioridades así:
+		\verb|#include <queue>|\\
+		\verb|priority_queue <tipo_dato> nombre;|\\
+		Ejemplos:\\
+		\verb|priority_queue <int> heap;|\\
+		\verb|priority_queue <pair <int, int> > q;|\\
+		\quad \\
+		Para más información mirar: \url{http://www.cplusplus.com/reference/queue/priority_queue/}
+	\end{frame}
+	
+	
+	\begin{frame}
+		\frametitle{Operaciones}
+		La cola de prioridades (heap) soporta las siguientes operaciones
+		\begin{description}
+			\item [push] Inserta un elemento
+			\item [pop] Extrae un elemento
+			\item [top] Retorna el máximo elemento de la cola (heap)
+			\item [size] Retorna el tamaño de la cola (heap)
+		\end{description}
+		\quad \\
+		La cola de prioridades se ordena de acuerdo a la función de ordenamiento $<$ (menor que) por lo que retorna el elemento con el cual todos los demás comparan menor que él, es decir, el mayor elemento.
+	\end{frame}
+
+	\begin{frame}
+		\frametitle{GRACIAS}
+		Esta presentación fue basada en el libro Competitive Programming 3 de Steven Halim y Felix Halim.
+		\newline
+		Ciertos elementos contenidos en las diapositivas fueron tomados de:
+		\url{https://github.com/anaechavarria/SemilleroProgramacion/tree/master/Diapositivas}
+	\end{frame}
+\end{subsubsection}
+\end{subsection}
+\end{section}
+\end{document}

@@ -1,0 +1,62 @@
+\BOOKMARK [1][-]{section.1}{Plantilla}{}% 1
+\BOOKMARK [1][-]{section.2}{Cosas para tener en cuenta}{}% 2
+\BOOKMARK [1][-]{section.3}{Grafos}{}% 3
+\BOOKMARK [2][-]{subsection.3.1}{BFS}{section.3}% 4
+\BOOKMARK [2][-]{subsection.3.2}{DFS}{section.3}% 5
+\BOOKMARK [2][-]{subsection.3.3}{Ordenamiento topol\363gico}{section.3}% 6
+\BOOKMARK [2][-]{subsection.3.4}{Componentes fuertemente conexas}{section.3}% 7
+\BOOKMARK [2][-]{subsection.3.5}{Algoritmo de Dijkstra}{section.3}% 8
+\BOOKMARK [2][-]{subsection.3.6}{Algoritmo de Bellman-Ford}{section.3}% 9
+\BOOKMARK [2][-]{subsection.3.7}{Algoritmo de Floyd-Warshall}{section.3}% 10
+\BOOKMARK [3][-]{subsubsection.3.7.1}{Clausura transitiva}{subsection.3.7}% 11
+\BOOKMARK [3][-]{subsubsection.3.7.2}{Minimax}{subsection.3.7}% 12
+\BOOKMARK [3][-]{subsubsection.3.7.3}{Maximin}{subsection.3.7}% 13
+\BOOKMARK [2][-]{subsection.3.8}{Algoritmo de Prim}{section.3}% 14
+\BOOKMARK [2][-]{subsection.3.9}{Algoritmo de Kruskal}{section.3}% 15
+\BOOKMARK [3][-]{subsubsection.3.9.1}{Union-Find}{subsection.3.9}% 16
+\BOOKMARK [3][-]{subsubsection.3.9.2}{Algoritmo de Kruskal}{subsection.3.9}% 17
+\BOOKMARK [2][-]{subsection.3.10}{Algoritmo de m\341ximo flujo}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.11}{Teorema de Konig}{section.3}% 19
+\BOOKMARK [3][-]{subsubsection.3.11.1}{Ejemplo, aplicaci\363n Max Flow - Mimimum Vertex Cover - Maximum Matching Size}{subsection.3.11}% 20
+\BOOKMARK [1][-]{section.4}{Teor\355a de n\372meros}{}% 21
+\BOOKMARK [2][-]{subsection.4.1}{N\372meros romanos}{section.4}% 22
+\BOOKMARK [3][-]{subsubsection.4.1.1}{\301rabe a Romano}{subsection.4.1}% 23
+\BOOKMARK [3][-]{subsubsection.4.1.2}{Romano a \301rabe}{subsection.4.1}% 24
+\BOOKMARK [2][-]{subsection.4.2}{Divisores de un n\372mero}{section.4}% 25
+\BOOKMARK [2][-]{subsection.4.3}{M\341ximo com\372n divisor y m\355nimo com\372n m\372ltiplo}{section.4}% 26
+\BOOKMARK [2][-]{subsection.4.4}{Criba de Erat\363stenes}{section.4}% 27
+\BOOKMARK [2][-]{subsection.4.5}{Factorizaci\363n prima de un n\372mero}{section.4}% 28
+\BOOKMARK [2][-]{subsection.4.6}{Exponenciaci\363n logar\355tmica}{section.4}% 29
+\BOOKMARK [3][-]{subsubsection.4.6.1}{Propiedades de la operaci\363n m\363dulo}{subsection.4.6}% 30
+\BOOKMARK [3][-]{subsubsection.4.6.2}{Big mod}{subsection.4.6}% 31
+\BOOKMARK [2][-]{subsection.4.7}{Combinatoria}{section.4}% 32
+\BOOKMARK [3][-]{subsubsection.4.7.1}{Coeficientes binomiales}{subsection.4.7}% 33
+\BOOKMARK [3][-]{subsubsection.4.7.2}{Propiedades de combinatoria}{subsection.4.7}% 34
+\BOOKMARK [1][-]{section.5}{Programaci\363n din\341mica}{}% 35
+\BOOKMARK [2][-]{subsection.5.1}{Longest increasing subsequence}{section.5}% 36
+\BOOKMARK [3][-]{subsubsection.5.1.1}{Orden cuadr\341tico}{subsection.5.1}% 37
+\BOOKMARK [3][-]{subsubsection.5.1.2}{Orden logar\355tmico imprimiendo s\363lo longitud}{subsection.5.1}% 38
+\BOOKMARK [3][-]{subsubsection.5.1.3}{Orden logar\355tmico imprimiendo la secuencia}{subsection.5.1}% 39
+\BOOKMARK [2][-]{subsection.5.2}{Problema de la mochila}{section.5}% 40
+\BOOKMARK [2][-]{subsection.5.3}{Edit distance}{section.5}% 41
+\BOOKMARK [2][-]{subsection.5.4}{Formas de sumar un n\372mero}{section.5}% 42
+\BOOKMARK [2][-]{subsection.5.5}{Longest Common Substring}{section.5}% 43
+\BOOKMARK [2][-]{subsection.5.6}{Longest Common Subsequence}{section.5}% 44
+\BOOKMARK [2][-]{subsection.5.7}{Shortest Common Supersequence}{section.5}% 45
+\BOOKMARK [2][-]{subsection.5.8}{Maximum subrectangle sum \(2D\)}{section.5}% 46
+\BOOKMARK [2][-]{subsection.5.9}{Maximum subrectangle sum \(3D\)}{section.5}% 47
+\BOOKMARK [1][-]{section.6}{Strings}{}% 48
+\BOOKMARK [2][-]{subsection.6.1}{Algoritmo de KMP}{section.6}% 49
+\BOOKMARK [2][-]{subsection.6.2}{Formatos de impresi\363n}{section.6}% 50
+\BOOKMARK [3][-]{subsubsection.6.2.1}{N\372meros}{subsection.6.2}% 51
+\BOOKMARK [3][-]{subsubsection.6.2.2}{Strings}{subsection.6.2}% 52
+\BOOKMARK [3][-]{subsubsection.6.2.3}{Formato en Java}{subsection.6.2}% 53
+\BOOKMARK [1][-]{section.7}{Otros}{}% 54
+\BOOKMARK [2][-]{subsection.7.1}{Binary Search}{section.7}% 55
+\BOOKMARK [2][-]{subsection.7.2}{BitSet}{section.7}% 56
+\BOOKMARK [2][-]{subsection.7.3}{M\341ximo orden dado un n}{section.7}% 57
+\BOOKMARK [2][-]{subsection.7.4}{Suma de grandes n\372meros en C++}{section.7}% 58
+\BOOKMARK [1][-]{section.8}{Struct}{}% 59
+\BOOKMARK [2][-]{subsection.8.1}{Funci\363n de comparaci\363n}{section.8}% 60
+\BOOKMARK [1][-]{section.9}{C++}{}% 61
+\BOOKMARK [2][-]{subsection.9.1}{Strings con arreglo de caracteres}{section.9}% 62

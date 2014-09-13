@@ -1,0 +1,65 @@
+\documentclass[12pt,letterpaper,oneside]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{olymp}
+\usepackage[dvips]{graphicx}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{ulem}
+\usepackage{amsmath}
+%\usepackage{expdlist}
+%\usepackage{mfpic}
+%\usepackage{comment}
+
+% Treat all pictures as MPS (metapost) when using PDFLaTeX tool
+\ifx\pdftexversion\undefined
+\else
+ \DeclareGraphicsRule{*}{mps}{*}{}
+\fi
+
+\renewcommand{\contestname}{
+LOOK UP - Maratón de Programación - EAFIT -  Agosto 30, 2014
+}
+
+% Copied from 'amstex.tex' \bmod declaration
+\def\bdiv{\mskip-\medmuskip\mkern5mu\mathbin{\mathrm{div}}\mkern5mu\mskip-\medmuskip}
+% End of copied text
+
+\renewcommand{\t}{\texttt}
+
+\begin{document}
+
+
+\thispagestyle{empty}
+\begin{center}
+	\LARGE\textbf{\center Maratón de programación LOOK UP - EAFIT}
+	\LARGE\textbf{\center Agosto 30, 2014}
+	\vspace*{\fill}
+	\LARGE\textbf{\center Comentarios generales}
+	\begin{itemize}
+		\item Este conjunto contiene 4 problemas
+		\item La maratón tiene una duración de 150 minutos en total.
+               	\item La tabla de resultados será congelada después de 120 minutos.
+                	\item Los envios no serán respondidos si fueron enviados después del pasados 130 minutos de competencia. (Serán respondidos cuando la competencia acabe).
+		\item Si están programando en Java, recuerden que el nombre del código fuente como el nombre de la clase que contiene el método $main$ debe ser nombrado igual a como se describió en cada problema.
+		\item Buena suerte para todos y diviértanse.
+	\end{itemize}
+	\quad \\ \quad \\
+	\vspace*{\fill}
+\end{center}
+\newpage
+
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+	\LARGE{Página dejada intencionalmente en blanco.}
+\end{center}
+\vspace*{\fill}
+\newpage
+
+\input texts/stack.tex
+\input texts/grados.tex
+\input texts/visita.tex
+\input texts/paseo.tex
+
+\end{document}

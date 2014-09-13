@@ -1,0 +1,38 @@
+\begin{problem}{Roxana y las pilas}{entrada estándar}{salida estándar}{3 segundos}{pilas}
+
+Roxana es una pequeña niña que está aprendiendo estructuras de datos. Ella te pidió que la ayudaras con un programa que simula cómo funciona una pila.
+
+Roxana te dirá $n$ instrucciones, cada una puede ser de sólo un tipo. Veamos qué tipo de instrucciones conoce ella:
+\begin{itemize}
+	\item Cuando Roxana dice \textbf{PUSH}, este será seguido por un espacio y un número $k$ $(1 \leq k \leq 1000)$; el cual debe ser insertado en la pila. \emph{En este tipo de instrucción no tienes que imprimir nada}.
+	\item Cuando Roxana dice \textbf{POP}, debes remover el último elemento de la pila, \emph{Pero no imprimirlo}. Si no hay elementos en la pila debes ignorar esta instrucción.
+	\item Cuando Roxana dice \textbf{TOP}, \emph{debes imprimir, en una línea, el último elemento de la pila sin removerlo}. Si la pila está vacía, debes imprimir \texttt{"EMPTY"} sin comillas.
+\end{itemize}
+
+\InputFile
+
+La primera línea de la entrada contiene un entero $n$ $(1 \leq n \leq 100)$, representando el número de instrucciones que Roxana te dirá.\\
+Después, siguen $n$ líneas, cada una contiene cualquiera de las instrucciones explicadas anteriormente.
+
+\OutputFile
+
+La salida debe contener el resultado obtenido ejecutando las instrucciones.
+
+\Example
+
+\begin{example}
+\exmp{
+6
+PUSH 1
+TOP
+POP
+TOP
+PUSH 5
+TOP
+}{
+1
+EMPTY
+5
+}%
+\end{example}
+\end{problem}

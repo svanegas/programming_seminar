@@ -1,0 +1,57 @@
+\begin{problem}{Teoría de los seis grados}{entrada estándar}{salida estándar}{3 segundos}{grados}
+
+Existe una hipótesis llamada \textbf{"Seis grados de separación"} que intenta probar que cualquier persona en la tierra puede estar conectado con otra a través de una cadena de conocidos que no tiene más de cinco intermedios, es decir, conectando a ambas personas con sólo seis (6) enlaces.\\
+
+Conociendo todas las relaciones que tienen las personas, hoy queremos determinar si, para dos personas, se cumple la teoría.\\
+
+\InputFile
+
+La primera línea de la entrada contiene un entero $n$ $(2 \leq n \leq 100)$, representando la cantidad de personas que existen en el caso de prueba.\\
+Después, siguen $n$ líneas, cada una con el nombre de una persona. Se garantiza que la longitud del nombre no excede 20 caracteres, no se repiten nombres y estos están compuestos únicamente de letras mayúsculas o minúsculas del alfabeto inglés.\\
+\newline
+A continuación, sigue un entero $m$ $(1 \leq m \leq 500)$ que son la cantidad de relaciones que se van a describir. $m$ líneas siguen, cada una describiendo una relación, compuesta por dos nombres $a$ y $b$ separados por un espacio, esta relación significa que la persona $a$ conoce a la $b$ asi como $b$ conoce a $a$.\\
+\newline
+Finalmente, sigue un entero $q$ $(1 \leq q \leq 50)$, que indica la cantidad de consultas que se quieren hacer. Después de esto, seguirán $q$ líneas conteniendo una consulta cada una. Una consulta está compuesta por dos nombres separados por un espacio, se garantiza que los nombres son distintos y pertenecen a los dados por el caso de prueba.\\
+
+\OutputFile
+
+La salida debe contener $q$ líneas, cada una diciendo \texttt{"Aceptada"} si las personas involucradas en la consulta pueden conocerse en seis (6) o menos pasos, o \texttt{"Rechazada"} de lo contrario.
+
+\Example
+
+\begin{example}
+\exmp{
+10
+Roxana
+Esteban
+Camila
+Carlos
+Felipe
+Laura
+Alicia
+Santiago
+Alejandra
+Juliana
+8
+Roxana Esteban
+Esteban Camila
+Camila Carlos
+Juliana Alejandra
+Felipe Carlos
+Felipe Laura
+Alicia Santiago
+Alicia Laura
+4
+Santiago Laura
+Alicia Esteban
+Roxana Santiago
+Alejandra Felipe
+}{
+Aceptada
+Aceptada
+Rechazada
+Rechazada
+}%
+\end{example}
+
+\end{problem}
