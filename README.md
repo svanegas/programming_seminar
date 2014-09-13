@@ -1,4 +1,4 @@
-programming_seminar
+Programming Seminar
 ===================
 
-This repository contains some files that are used in Programming Seminar at EAFIT, such as presentations, handbooks, guides, problem packages for BOCA Online Judge.
+This repository contains some files and content that are used in Programming Seminar at EAFIT, such as presentations, handbooks, guides, problem packages for BOCA Online Judge.
