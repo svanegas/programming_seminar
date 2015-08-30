@@ -2,35 +2,26 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish]{babel}
 \usepackage{hyperref}
-\usepackage{verbatim}
 \usepackage{listings}
 
 \setbeamercovered{invisible}
 \usetheme{Frankfurt}
 \usefonttheme{serif}
 
-\newcommand{\source}[1]{
-	\verbatiminput{#1}
-	%\dotfill
-}
-
-% Configurar los listings (Códigos)
-\renewcommand{\lstlistingname}{Code}
-\lstset{
-	language=C++,               % Lenguaje
-	basicstyle=\ttfamily\tiny,  % Tipo de fuente
-	keywordstyle=\color{blue},  % Color de palabras clave
-	stringstyle=\color{red},    % Color de strings
-	commentstyle=\color{gray},  % Color de comentarios
-	showstringspaces=false,     % No muestrar el _ cuando el string tiene espacios
-	breaklines = true,          % Partir las líneas largas
-	breakatwhitespace=true,	    % Partir las líneas en un espacio
-	numbers=left,				% Numerar las líneas a la izq
-	numberstyle=\tiny,			% Poner los números de las líneas pequeños
-	numberblanklines=true,      % Numerar las líneas en blanco
-	columns=fullflexible,       % No perder el formato al dejar los espacios
-	keepspaces=true,   			% Dejar los espacios insertados
-	frame=tb,					% Poner el recuadro
+\newcommand{\src}[2]{
+	\lstset{
+		language=#1,
+		basicstyle=\ttfamily\scriptsize,
+		keywordstyle=\color{blue},
+		stringstyle=\color{red},
+		commentstyle=\color{gray},
+		showstringspaces=false,
+		breaklines = true,
+		numbers=none,
+		columns=fullflexible,
+		frame=false
+	}
+	\lstinputlisting{#2}
 }
 
 \AtBeginSection[]{%
@@ -72,17 +63,11 @@
 \begin{subsection}{What is a template?}
 \begin{frame}[fragile]
 	\frametitle{What is a template?}
-	\begin{block}{What is a template?}
-		The template is the code contained by every program in the contest, i.e. a base code.\\
-		For example:\\
+	The template is the code contained by every program in the contest, i.e. a base code.\\
+	For example:\\
+	\begin{block}{Main method}
 		\emph{The main method should be included in all programs.}
-		\begin{lstlisting}
-int
-main() {
-  // Your code goes here.
-  return 0;
-}
-		\end{lstlisting}
+		\src{C++}{./src/main_method.cpp}
 	\end{block}
 \end{frame}
 \end{subsection}
@@ -91,11 +76,12 @@ main() {
 \begin{frame}[fragile]
 	\frametitle{Let's write a template}
 	Let's imagine that we already are in the contest. How would the editor be configured?\\
+	\pause
 	\begin{block}{Test 1}
 		\textbf{5 minutes}\\
+		\pause
 		Each team should write a template for their favourite programming language. \emph{(We hope it is C++)}\\
 		\emph{The first team writting a good template and configuring the editor will win.}
-		\pause
 	\end{block}
 \end{frame}
 \end{subsection}
@@ -110,7 +96,7 @@ main() {
 	\end{itemize}
 	\pause
 	\begin{block}{Template}
-		\source{./src/template.cpp}
+		\src{C++}{./src/template.cpp}
 	\end{block}
 \end{frame}
 \end{subsection}
@@ -130,11 +116,11 @@ main() {
 	You can use either input and output file streams (\texttt{ifstream}, \texttt{ofstream}) or just redirect the standard input and output to a file.
 	\pause
 	\begin{block}{Redirect standard streams}
-		\source{./src/fileredirect.cpp}
+		\src{C++}{./src/fileredirect.cpp}
 	\end{block}
 	\pause
 	\begin{block}{Use new streams}
-		\source{./src/filestreams.cpp}
+		\src{C++}{./src/filestreams.cpp}
 	\end{block}
 \end{frame}
 
@@ -143,7 +129,7 @@ main() {
 	You should use the \texttt{FileInputStream} class to read from a file.
 	\pause
 	\begin{block}{Redirect standard streams}
-		\source{./src/fileinputstream.java}
+		\src{Java}{./src/fileinputstream.java}
 	\end{block}
 \end{frame}
 \end{subsection}
@@ -155,23 +141,24 @@ main() {
 	\pause
 	\begin{block}{Test 2}
 		\textbf{4 minutes}\\
+		\pause
 		Each team shoud write a program that reads from standard input an arbitrary set of integers and strings.\\
 		You don't know how many elements are in the input, you only have to print each one in a single line.\\
-		An element is a number or a string that is separated from another element by at least one space or line break.\\
+		An element is a number or a string that is separated from another element by at least one space or end of line.\\
 	\end{block}
 	\begin{tabular}{ l c c c c c c l }
 		\textbf{Sample input} & & & & & & & \textbf{Sample output} \\
-		\texttt{hi 251} & & & & & & & hi \\
-		\texttt{mornin6a} & & & & & & & 251 \\
-		\texttt{read 1 this} & & & & & & & mornin6a \\
-		& & & & & & & read \\
-		& & & & & & & 1 \\
-		& & & & & & & this \\
+		\texttt{hi 251} & & & & & & & \texttt{hi} \\
+		\texttt{mornin6a} & & & & & & & \texttt{251} \\
+		\texttt{read 1 this} & & & & & & & \texttt{mornin6a} \\
+		& & & & & & & \texttt{read} \\
+		& & & & & & & \texttt{1} \\
+		& & & & & & & \texttt{this} \\
 	\end{tabular}
 \end{frame}
 
 \begin{frame}[fragile]
-	\frametitle{Reading from standard input in C++}
+	\frametitle{Reading from standard input}
 	You can use \texttt{cin}, \texttt{scanf}, \texttt{getline}. Depending on your needs.\\
 	Take care of:
 	\begin{itemize}
@@ -180,17 +167,148 @@ main() {
 			\emph{in the first line of your main method when using only} \texttt{cin}
 			\emph{to get a better performance.}
 	\end{itemize}
+	For Java, use \texttt{Scanner} or \texttt{BufferedReader}.
 \end{frame}
 
-%\begin{frame}[fragile]
-%	\frametitle{Reading from a file in Java}
-%	You should use the \texttt{FileInputStream} class to read from a file.
-%	\pause
-%	\begin{block}{Redirect standard streams}
-%		\source{./src/fileinputstream.java}
-%	\end{block}
-%\end{frame}
+\begin{frame}[fragile]
+	\frametitle{Reading from standard input in C++}
+	For the previous test we could use \texttt{cin}.\\
+	\begin{block}{Test2 solution}
+		\src{Java}{./src/test2.cpp}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Reading from standard input in C++}
+	For the previous test we could use \texttt{cin}, with no \texttt{stdio} syncing.\\
+	\begin{block}{Test2 solution}
+		\src{Java}{./src/test2-fast.cpp}
+	\end{block}
+\end{frame}
+\end{subsection}
+
+\begin{subsection}{Reading tricks}
+\begin{frame}[fragile]
+	\frametitle{Scanf reading tricks}
+	Scanf tricks.
+	\begin{block}{Test 3}
+		\textbf{5 minutes}\\
+		\pause
+		Write a program that reads multiple lines, each line will contain two colon and semicolon separated integers. Output one line for each pair of integers, using right justified width of 5, and leading zeros. Both integers shoud be separated by a \lq-\rq character.
+	\end{block}
+	\begin{tabular}{ l c c c c c c l }
+		\textbf{Sample input} & & & & & & & \textbf{Sample output} \\
+		\texttt{56:;14} & & & & & & & \texttt{00056 - 00014} \\
+		\texttt{99999:;1} & & & & & & & \texttt{99999 - 00001}\\
+		\texttt{1:;0} & & & & & & & \texttt{00001 - 00000} \\
+	\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Scanf reading tricks}
+	Solution
+	\begin{block}{Test 3 solution}
+		\src{C++}{./src/test3.cpp}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Reading tricks}
+	We are asked to read multiple lines, each one with an arbitrary number of integers.
+	\pause
+	\begin{block}{Test 4}
+		\textbf{5 minutes}\\
+		\pause
+		Write a program that reads several lines, each line will contain an unknown number of integers. For each line, print the sum of all integers in that line.
+	\end{block}
+	\begin{tabular}{ l c c c c c c l }
+		\textbf{Sample input} & & & & & & & \textbf{Sample output} \\
+		\texttt{1 2 3} & & & & & & & \texttt{6} \\
+		\texttt{} & & & & & & & \texttt{0}\\
+		\texttt{5 5 5 5 5} & & & & & & & \texttt{25} \\
+	\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Stringstream tricks}
+	Solution using \texttt{stringstream}.
+	\begin{block}{Test 4 solution}
+		\src{C++}{./src/test4.cpp}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Reading tricks}
+	Now we are asked to solve the previous problem, but they will give us the number of lines following in the input.
+	\pause
+	\begin{block}{Test 5}
+		\textbf{3 minutes}\\
+		\pause
+		Write a program that reads an integer, inditating the number of lines to follow, each line will contain an unknown number of integers. For each line, print the sum of all integers in that line.
+	\end{block}
+	\begin{tabular}{ l c c c c c c l }
+		\textbf{Sample input} & & & & & & & \textbf{Sample output} \\
+		\texttt{3} & & & & & & & \texttt{6} \\
+		\texttt{1 2 3} & & & & & & & \texttt{0}  \\
+		\texttt{} & & & & & & & \texttt{25} \\
+		\texttt{5 5 5 5 5} & & & & & & & \\
+	\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Stringstream tricks}
+	Solution using \texttt{stringstream}.
+	\begin{block}{Test 5 solution}
+		\src{C++}{./src/test5.cpp}
+	\end{block}
+\end{frame}
 \end{subsection}
 \end{section}
-%Not efficient method is to use the standard \texttt{Scanner}, but if you need a better performance you could use \texttt{BufferedReader}.
+
+\begin{section}{Numbers}
+\begin{subsection}{Operations in numbers}
+\begin{frame}[fragile]
+	\frametitle{Operations in numbers}
+	Suppose that we have the following problem:
+	\begin{block}{Test 6}
+		\textbf{3 minutes}\\
+		\pause
+		You are given two integers, in range [$1, 2^{30}$], you have to add them and output the result.
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Operations in numbers}
+	As $2 * 2^{30}$ doesn't fit in an 32-bit integer, we should use 64-bit integers.\\
+	Use \texttt{long long} for C++ or \texttt{long} for Java.
+	\pause
+	\begin{block}{Test 6 solution}
+		\src{C++}{./src/test6.cpp}
+		\pause
+		You can define an alias to avoid writing \texttt{long long} in the whole code.
+		\src{C++}{./src/test6-typedef.cpp}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Operations in numbers}
+	What if the input numbers doesn't even fit in a 64-bit integer?\\
+	\pause
+	We should use the \texttt{BigInteger} Java class. Or build our own big numbers operations in C++.
+	\begin{block}{Java BigInteger}
+		\src{Java}{./src/biginteger.java}
+	\end{block}
+\end{frame}
+\end{subsection}
+\end{section}
+
+\begin{section}{Awards}
+\begin{subsection}{Awards}
+\begin{frame}[fragile]
+	\frametitle{Thanks!}
+	We hope to see all of us advancing to the next round.\\
+	\textbf{ICPC Latin America-North Regionals at Bogotá.}
+\end{frame}
+\end{subsection}
+\end{section}
 \end{document}
