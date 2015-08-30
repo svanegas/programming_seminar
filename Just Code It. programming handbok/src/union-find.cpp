@@ -1,34 +1,21 @@
-const int MAXN = 10005;
-typedef pair <int, int> edge;        // Pareja (nodo, peso)
-typedef pair <int, int> weight_node; // Pareja (peso, nodo)
-vector <edge> g[MAXN];              // Lista de adyacencia
-bool visited[MAXN];
+const int MAXN = 100005;
+int p[MAXN];// El padre del conjunto al que pertenece cada nodo
 
-// Retorna el costo total del MST
-int prim(int n){ // n = número de nodos
-    for (int i = 0; i <= n; ++i) visited[i] = false;
-    int total = 0;
-    
-    priority_queue<weight_node, vector <weight_node>,
-                    greater<weight_node> > q;
-    
-    // Empezar el MST desde 0 (cambiar si el nodo 0 no existe)
-    q.push(weight_node(0, 0));
-    while (!q.empty()){
-        int u = q.top().second;
-        int w = q.top().first;
-        q.pop();
-        if (visited[u]) continue;
+// Inicializar cada conjunto como unitario
+void initialize(int n){
+  for (int i = 0; i <= n; ++i) p[i] = i; 
+}
 
-        visited[u] = true;
-        total += w;
-        for (int i = 0; i < g[u].size(); ++i){
-            int v = g[u][i].first;
-            int next_w = g[u][i].second;
-            if (!visited[v]){
-                q.push(weight_node(next_w, v));    
-            }    
-        }
-    }
-    return total;
+// Encontrar el padre del conjunto al que pertenece u
+int find(int u){
+  if (p[u] == u) return u;
+  return p[u] = find(p[u]);
+}
+
+// Unir los conjunto a los que pertenecen u y v
+void join(int u, int v){
+  int a = find(u);
+  int b = find(v);
+  if (a == b) return;
+  p[a] = b;  
 }
