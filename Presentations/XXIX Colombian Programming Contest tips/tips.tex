@@ -1,0 +1,196 @@
+\documentclass{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{hyperref}
+\usepackage{verbatim}
+\usepackage{listings}
+
+\setbeamercovered{invisible}
+\usetheme{Frankfurt}
+\usefonttheme{serif}
+
+\newcommand{\source}[1]{
+	\verbatiminput{#1}
+	%\dotfill
+}
+
+% Configurar los listings (Códigos)
+\renewcommand{\lstlistingname}{Code}
+\lstset{
+	language=C++,               % Lenguaje
+	basicstyle=\ttfamily\tiny,  % Tipo de fuente
+	keywordstyle=\color{blue},  % Color de palabras clave
+	stringstyle=\color{red},    % Color de strings
+	commentstyle=\color{gray},  % Color de comentarios
+	showstringspaces=false,     % No muestrar el _ cuando el string tiene espacios
+	breaklines = true,          % Partir las líneas largas
+	breakatwhitespace=true,	    % Partir las líneas en un espacio
+	numbers=left,				% Numerar las líneas a la izq
+	numberstyle=\tiny,			% Poner los números de las líneas pequeños
+	numberblanklines=true,      % Numerar las líneas en blanco
+	columns=fullflexible,       % No perder el formato al dejar los espacios
+	keepspaces=true,   			% Dejar los espacios insertados
+	frame=tb,					% Poner el recuadro
+}
+
+\AtBeginSection[]{%
+  \begin{frame}<beamer>
+    \frametitle{Content}
+    \tableofcontents[sectionstyle=show/hide,subsectionstyle=hide/show/hide]
+  \end{frame}
+  \addtocounter{framenumber}{-1}% If you don't want them to affect the slide number
+}
+
+\title{Programming Seminar}
+\subtitle{XXIX ACIS Colombian Programming Contest tips}
+\author{Santiago Vanegas Gil\\Esteban Foronda Sierra}
+
+\institute{EAFIT University}
+\date{Monday, August 31st 2015}
+
+\begin{document}
+
+\begin{frame}
+	\titlepage
+\end{frame}
+
+\begin{frame}
+	\frametitle{Content}
+	\tableofcontents
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Set up}
+	\begin{block}{Get ready}
+		Open your favourite editor.\\
+		\emph{We recommend Dev C++ or CodeBlocks for C/C++\\
+			NetBeans or Eclipse for Java}
+	\end{block}
+\end{frame}
+
+\begin{section}{Template}
+\begin{subsection}{What is a template?}
+\begin{frame}[fragile]
+	\frametitle{What is a template?}
+	\begin{block}{What is a template?}
+		The template is the code contained by every program in the contest, i.e. a base code.\\
+		For example:\\
+		\emph{The main method should be included in all programs.}
+		\begin{lstlisting}
+int
+main() {
+  // Your code goes here.
+  return 0;
+}
+		\end{lstlisting}
+	\end{block}
+\end{frame}
+\end{subsection}
+
+\begin{subsection}{Writing your template}
+\begin{frame}[fragile]
+	\frametitle{Let's write a template}
+	Let's imagine that we already are in the contest. How would the editor be configured?\\
+	\begin{block}{Test 1}
+		\textbf{5 minutes}\\
+		Each team should write a template for their favourite programming language. \emph{(We hope it is C++)}\\
+		\emph{The first team writting a good template and configuring the editor will win.}
+		\pause
+	\end{block}
+\end{frame}
+\end{subsection}
+
+\begin{subsection}{Recommended template}
+\begin{frame}[fragile]
+	\frametitle{A fast and enough template}
+	\begin{itemize}
+		\item Did you include lots of header files?
+		\item Did you write \texttt{using namespace std;}?
+		\item Did you write the main method?
+	\end{itemize}
+	\pause
+	\begin{block}{Template}
+		\source{./src/template.cpp}
+	\end{block}
+\end{frame}
+\end{subsection}
+\end{section}
+
+\begin{section}{Input}
+\begin{subsection}{Types of input}
+\begin{frame}[fragile]
+	\frametitle{Common types of input}
+	In a programming contest, the most common input method is the standard one, i.e. reading from \textbf{standard input}. However, you could be required to \textbf{read from a file}, let's see how to do it.
+\end{frame}
+\end{subsection}
+
+\begin{subsection}{Reading from a file}
+\begin{frame}[fragile]
+	\frametitle{Reading from a file in C++}
+	You can use either input and output file streams (\texttt{ifstream}, \texttt{ofstream}) or just redirect the standard input and output to a file.
+	\pause
+	\begin{block}{Redirect standard streams}
+		\source{./src/fileredirect.cpp}
+	\end{block}
+	\pause
+	\begin{block}{Use new streams}
+		\source{./src/filestreams.cpp}
+	\end{block}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Reading from a file in Java}
+	You should use the \texttt{FileInputStream} class to read from a file.
+	\pause
+	\begin{block}{Redirect standard streams}
+		\source{./src/fileinputstream.java}
+	\end{block}
+\end{frame}
+\end{subsection}
+
+\begin{subsection}{Reading from standard input}
+\begin{frame}[fragile]
+	\frametitle{Let's read some inputs}
+	Use any reading method.
+	\pause
+	\begin{block}{Test 2}
+		\textbf{4 minutes}\\
+		Each team shoud write a program that reads from standard input an arbitrary set of integers and strings.\\
+		You don't know how many elements are in the input, you only have to print each one in a single line.\\
+		An element is a number or a string that is separated from another element by at least one space or line break.\\
+	\end{block}
+	\begin{tabular}{ l c c c c c c l }
+		\textbf{Sample input} & & & & & & & \textbf{Sample output} \\
+		\texttt{hi 251} & & & & & & & hi \\
+		\texttt{mornin6a} & & & & & & & 251 \\
+		\texttt{read 1 this} & & & & & & & mornin6a \\
+		& & & & & & & read \\
+		& & & & & & & 1 \\
+		& & & & & & & this \\
+	\end{tabular}
+\end{frame}
+
+\begin{frame}[fragile]
+	\frametitle{Reading from standard input in C++}
+	You can use \texttt{cin}, \texttt{scanf}, \texttt{getline}. Depending on your needs.\\
+	Take care of:
+	\begin{itemize}
+		\item Usage of \texttt{cin} with \texttt{getline}: \emph{use cin.ignore()}
+		\item Usage of \texttt{cin} with \texttt{scanf}: \emph{write} \texttt{ios::sync\_with\_stdio(false);}
+			\emph{in the first line of your main method when using only} \texttt{cin}
+			\emph{to get a better performance.}
+	\end{itemize}
+\end{frame}
+
+%\begin{frame}[fragile]
+%	\frametitle{Reading from a file in Java}
+%	You should use the \texttt{FileInputStream} class to read from a file.
+%	\pause
+%	\begin{block}{Redirect standard streams}
+%		\source{./src/fileinputstream.java}
+%	\end{block}
+%\end{frame}
+\end{subsection}
+\end{section}
+%Not efficient method is to use the standard \texttt{Scanner}, but if you need a better performance you could use \texttt{BufferedReader}.
+\end{document}
