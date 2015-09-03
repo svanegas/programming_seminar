@@ -65,15 +65,27 @@
 	\subsection{Ordenamiento topológico}
 		Dado un grafo no cíclico y dirigido (DAG), ordena los nodos linealmente de tal forma que si existe una arista entre los nodos $u$ y $v$ entonces $u$ aparece antes que $v$ en el ordenamiento.\\
 		Este ordenamiento se puede ver como una forma de poner todos los nodos en una línea recta y que las aristas vayan todas de izquierda a derecha.\\
-		Complejidad: $O(n+m)$ donde $n$ es el número de nodos y $m$ es el número de aristas.\\
+		Complejidad: $O(n+m)$ donde $n$ es el número de nodos y $m$ es el número de aristas.
 		\source{./src/ordenamiento_topologico.cpp}
 		
 	\subsection{Componentes fuertemente conexas}
 		Dado un grafo dirigido, calcula la componente fuertemente conexa (SCC) a la que pertenece cada nodo.\\
 		Para cada pareja de nodos $u, v$ que pertenecen a una misma SCC se cumple que hay un camino de $u$ a $v$ y de $v$ a $u$.\\
 		Si se comprime el grafo dejando como nodos cada una de las componentes se quedará con un DAG.\\
-		Complejidad: $O(n+m)$ donde $n$ es el número de nodos y $m$ es el número de aristas.\\
-		\source{./src/componentes_conexas.cpp}
+		\subsubsection{Kosaraju's algorithm}
+			Complejidad: $O(n+m)$ donde $n$ es el número de nodos y $m$ es el número de aristas.\\
+			\source{./src/componentes_conexas.cpp}
+		\subsubsection{Tarjan's algorithm}
+			\begin{itemize}
+				\item $d[i]$ = Tiempo de descubrimiento del nodo i. (Inicializar con -1)
+				\item $low[i]$ = Menor tiempo de descubrimiento alcanzable desde el nodo i. (No inicializar)
+				\item $scc[i]$ = Componente a la que pertenece el nodo i. (No inicializar)
+				\item $s$ = Pila usada por el algoritmo (Inicializar vacía)
+				\item $stacked[i]$ = true si el nodo i está en la pila. (Inicializar con falso)
+				\item $ticks$ = Reloj usado para los tiempos de descubrimiento (Inicializar en 0)
+				\item $current_scc$ = id de la componente actual siendo descubierta. (Inicializar en 0)
+				\source{./src/tarjan.cpp}
+			\end{itemize}
 	
 	\subsection{Algoritmo de Dijkstra}
 		Dado un grafo con pesos \textbf{no negativos} en las aristas, halla la mínima distancia entre una fuente $s$ y los demás nodos.\\
@@ -307,11 +319,19 @@ Complejidad: $O(n \times W)$ donde $n$ es el número de objetos y $W$ es la capa
 	
 \section{Strings}
 	\subsection{Algoritmo de KMP}
-	Encuentra si el string \verb|needle| aparece en en string \verb|haystack|.\\
-	Si no se retorna directamente \verb|true| cuando se halla la primera ocurrencia, el algoritmo encuentra todas las ocurrencias de \verb|needle| en \verb|haystack|.\\
-	La primera parte del algoritmo llena el arreglo \verb|border| donde \verb|border[i]| es la longitud del borde del prefijo de \verb|needle| que termina en la posición \verb|i|. Un borde de una cadena $s$ es la cadena más larga que es a la vez prefijo y sufijo de $s$ pero que es diferente de $s$.\\
-	Complejidad: $O(n)$ donde $n$ es el tamaño de \verb|haystack|.\\
-	\source{./src/kmp.cpp}
+		Encuentra si el string \verb|needle| aparece en en string \verb|haystack|.\\
+		Si no se retorna directamente \verb|true| cuando se halla la primera ocurrencia, el algoritmo encuentra todas las ocurrencias de \verb|needle| en \verb|haystack|.\\
+		La primera parte del algoritmo llena el arreglo \verb|border| donde \verb|border[i]| es la longitud del borde del prefijo de \verb|needle| que termina en la posición \verb|i|. Un borde de una cadena $s$ es la cadena más larga que es a la vez prefijo y sufijo de $s$ pero que es diferente de $s$.\\
+		Complejidad: $O(n)$ donde $n$ es el tamaño de \verb|haystack|.\\
+		\source{./src/kmp.cpp}
+
+	\subsection{Algoritmo de Booth - Lexicographically minimal string rotation}
+		Encuentra la rotación de un string que contiene el menor orden lexicográfico de todas las rotaciones posibles. Por ejemplo, la menor rotación lexicográfica de \texttt{bbaaccaadd} sería \texttt{aaccaaddbb}, y de \texttt{abcdeabcdea} sería \texttt{aabcdeabcde}. \\
+		El algoritmo concatena el string a sí mismo y computa una tabla basándose en el algoritmo de KMP.\\
+		El método devuelve el \textbf{índice en base 0 a primera letra correspondiente a la mejor rotación}, si se necesita el string completo se deberá utilizar substring para reconstruirlo: \texttt{str.substr(ind, str.size()) + str.substr(0, ind)}\\		
+Complejidad: $O(n)$ donde $n$ es el tamaño del string.
+		\source{./src/booths.cpp}
+
 	\subsection{Formatos de impresión}
 		\subsubsection{Números}
 		Con la función $printf$ podemos dar distintos formatos de impresión, por ejemplo justificar, ceros o espacios iniciales, etc.
