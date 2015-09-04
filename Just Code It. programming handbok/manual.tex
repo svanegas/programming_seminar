@@ -354,18 +354,23 @@ If the string is smaller the “empty” positions will be filled with “whites
 
 \section{Otros}
 	\subsection{Binary Search}
-	Permite buscar un elemento ($key$) en un arreglo \textbf{ordenado} ($arr$). Retorna el índice del valor menor o igual al buscado.
-	Complejidad: $O(n \log_2 n)$ donde $n$ es la cantidad de elementos del arreglo.\\
-	\source{./src/binarySearch.cpp}
+		Permite buscar un elemento ($key$) en un arreglo \textbf{ordenado} ($arr$). Retorna el índice del valor menor o igual al buscado.
+		Complejidad: $O(n \log_2 n)$ donde $n$ es la cantidad de elementos del arreglo.\\
+		\source{./src/binarySearch.cpp}
 	\subsection{BitSet}
-	Almacena bits, simula un array de booleanos, optimizando el espacio, cada elemento puede ser accedido por el operador $[$ $]$\\
-	\source{./src/bitset.cpp}
+		Almacena bits, simula un array de booleanos, optimizando el espacio, cada elemento puede ser accedido por el operador $[$ $]$\\
+		\source{./src/bitset.cpp}
 	\subsection{Máximo orden dado un $n$}
-	En la siguiente tabla se encuentran los límites de orden máximo respecto a un número de elementos $n$ del problema.\\
-	\includegraphics[scale=0.5]{./src/maxorder.jpg}
+		En la siguiente tabla se encuentran los límites de orden máximo respecto a un número de elementos $n$ del problema.\\
+		\includegraphics[scale=0.5]{./src/maxorder.jpg}
 	\subsection{Suma de grandes números en C++}
-	Como sabemos, en C++ los enteros ($int$) tienen un rango de $(2^31)-1$, y los $long long$ tienen un rango de $(2^64)-1$, por esto no podemos almacenar números de más de 18~19 números, para esto se debe usar la clase $BigInteger$ en $Java$, o si no hay que preocuparse por tiempo, podemos representar los números como $string$ y utilizar la siguiente funciones como la siguiente:
-	\source{./src/bigIntegerCpp.cpp}
+		Como sabemos, en C++ los enteros ($int$) tienen un rango de $(2^31)-1$, y los $long long$ tienen un rango de $(2^64)-1$, por esto no podemos almacenar números de más de 18~19 números, para esto se debe usar la clase $BigInteger$ en $Java$, o si no hay que preocuparse por tiempo, podemos representar los números como $string$ y utilizar la siguiente funciones como la siguiente:
+		\source{./src/bigIntegerCpp.cpp}
+	\subsection{Largest Rectangle in a Histogram}
+		Encuentra el área rectangular más grande posible en un histograma, donde el rectángulo es determinado por un número de barras continuas. Se asume que todas las barras tienen el mismo ancho de 1 unidad. \\
+		Complejidad: $O(n)$ donde $n$ es la cantidad de barras en el histograma.
+		\source{./src/largest_rectangle.cpp}
+		
 	
 
 \section{Struct}
