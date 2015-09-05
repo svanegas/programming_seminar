@@ -308,14 +308,38 @@ Complejidad: $O(n \times W)$ donde $n$ es el número de objetos y $W$ es la capa
 	\subsection{Shortest Common Supersequence}
 	El $Shortest$ $Common$ $Supersequence$ es el string más corto $z$ tal que los strings $s$ y $t$ sean subsecuencias de $z$.\\
 	Para hallar esto, simplemente es ejecutar el $Longest$ $Common$ $Subsequence$ entre los strings $s$ y $t$, y el tamaño de la supersecuencia más corta será $(n$ + $m)$ - $lcs(s,$ $t)$, donde $n$ y $m$ son los tamaños de los strings $s$ y $t$ respectivamente.
+	\subsection{Maximum subarray (non-adjacent) sum (1D)}
+		Dado un arreglo con números positivos, encontrar la máxima suma de una subsecuencia, teniendo en cuenta que los números de dicha secuencia no pueden ser adyacentes. \\
+		Por ejemplo \texttt{3 2 7 10} debería retornar 13 (suma de 3 y 10), \texttt{3 2 5 10 7} debería retornar 15 (suma de 3, 5 y 7). \\
+		Complejidad: $O(n)$ donde $n$ es el tamaño del arreglo.
+		\source{./src/non-adjacent_max_sum.cpp}
+	\subsection{Maximum subarray sum (1D) - Kadane's Algorithm}
+		Encuentra el subarreglo continuo (que contiene al menos un entero positivo) con la suma más grande. \\
+		Complejidad: $O(n)$ donde $n$ es el tamaño del arreglo.
+		\source{./src/kadane.cpp}
+		\subsubsection{Maximum circular subarray sum}
+			Si el arreglo es circular y queremos hallar la suma más grande se hace el siguiente procedimiento:
+			\begin{itemize}
+				\item Aplicamos $Kadane's$ al arreglo sin modificar, y se almacena como máximo: \texttt{maxi}.
+				\item Se itera sobre el arreglo para calcular la suma acumulada \texttt{acc} e invertir los valores del arreglo: \texttt{a\_inv[i] = -a[i]}.
+				\item La respuesta es el máximo entre el valor del punto $1$ y la suma acumulada más el resultado de un nuevo llamado al algoritmo con el arreglo invertido: \texttt{max(maxi, acc + kadane(a\_inv))}
+			\end{itemize}
 	\subsection{Maximum subrectangle sum (2D)}
-	Permite hallar el sub-rectángulo de una matriz con la mayor suma, la suma de un rectángulo es la suma de todos sus elementos. Un sub-rectángulo es cualquier sub-arreglo continuo de tamaño $1$ $\times$ $1$ o mayor, localizado dentro del todo el arreglo.
-	\source{./src/maximum2DSum.cpp}
+		Permite hallar el sub-rectángulo de una matriz con la mayor suma, la suma de un rectángulo es la suma de todos sus elementos. Un sub-rectángulo es cualquier sub-arreglo continuo de tamaño $1$ $\times$ $1$ o mayor, localizado dentro del toda la matriz.
+		\subsubsection{Naïve solution - $O(n^4)$}
+			Complejidad: $O(n^4)$ donde $n$ es el tamaño de un lado de la matriz (asumiendo que son iguales). \\
+			Cuidado que puede no pasar con 100. Lo idea sería \texttt{MAXN} $= \sqrt[4]{10^6}$
+			\source{./src/maximum2DSum.cpp}
+		\subsubsection{Using Kadane's - $O(n^3)$}
+			\source{./src/max_2d_sum_kadane.cpp}
 	\subsection{Maximum subrectangle sum (3D)}
-	Permite hallar la mayor suma en un arreglo 3D.
-	Complejidad $O(n^6)$ donde $n$ es el tamaño de uno de los lados del cubo.
-	\source{./src/maximum3DSum.cpp}
-	
+		Permite hallar la mayor suma en un arreglo 3D.
+		Complejidad $O(n^6)$ donde $n$ es el tamaño de uno de los lados del cubo.
+		\source{./src/maximum3DSum.cpp}
+	\subsection{Partition problem}
+		Determina si un arreglo de números puede ser particionado en dos conjuntos tal que la suma de ambos sea la misma. \\
+		Complejidad: $O(sum * n)$, donde $n$ es el tamaño del arreglo y $sum$ es la suma de cada conjunto. (notar que este algoritmo no es eficiente para arreglos con grandes sumas, para ese caso intentar una solución recursiva $O(2^n)$)
+		\source{./src/partition_problem.cpp}
 	
 \section{Strings}
 	\subsection{Algoritmo de KMP}
