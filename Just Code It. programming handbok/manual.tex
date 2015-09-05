@@ -340,6 +340,13 @@ Complejidad: $O(n \times W)$ donde $n$ es el número de objetos y $W$ es la capa
 		Determina si un arreglo de números puede ser particionado en dos conjuntos tal que la suma de ambos sea la misma. \\
 		Complejidad: $O(sum * n)$, donde $n$ es el tamaño del arreglo y $sum$ es la suma de cada conjunto. (notar que este algoritmo no es eficiente para arreglos con grandes sumas, para ese caso intentar una solución recursiva $O(2^n)$)
 		\source{./src/partition_problem.cpp}
+	\subsection{Longest Palindromic Substring}
+		Dado un string, encontrar el substring (estrictamente continuo) más largo que sea palíndromo. Por ejemplo si tenemos \texttt{"forgeeksskeegfor"} la salida debería ser: \texttt{"geeksskeeg"}\\
+		Complejidad: Creo que el primer método $O(n^3)$, el segundo $O(n)$ y el tercero $O(n^2)$.
+		\source{./src/longest_palindromic_substring.java}
+	\subsection{Longest Palindromic Subsequence}
+		Dado un string, encontrar el tamaño de la subsecuencia (no necesariamente continua). Por ejemplo  para \texttt{BBABCBCAB} la respuesta es 7, porque \texttt{BABCBAB} es la subsecuencia palindrómica más larga.
+		\source{./src/longest_palindromic_subsequence.cpp}
 	
 \section{Strings}
 	\subsection{Algoritmo de KMP}
