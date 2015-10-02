@@ -1,0 +1,71 @@
+\documentclass[12pt,letterpaper,oneside]{article}
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{olymp}
+\usepackage[dvips]{graphicx}
+\usepackage{color}
+\usepackage{colortbl}
+\usepackage{ulem}
+\usepackage{amsmath}
+%\usepackage{expdlist}
+%\usepackage{mfpic}
+%\usepackage{comment}
+
+% Treat all pictures as MPS (metapost) when using PDFLaTeX tool
+\ifx\pdftexversion\undefined
+\else
+ \DeclareGraphicsRule{*}{mps}{*}{}
+\fi
+
+\renewcommand{\contestname}{
+LOOK UP - Programming Contest - EAFIT -  October 3, 2015
+}
+
+% Copied from 'amstex.tex' \bmod declaration
+\def\bdiv{\mskip-\medmuskip\mkern5mu\mathbin{\mathrm{div}}\mkern5mu\mskip-\medmuskip}
+% End of copied text
+
+\renewcommand{\t}{\texttt}
+
+\begin{document}
+
+
+\thispagestyle{empty}
+\begin{center}
+  \LARGE\textbf{\center Programming Contest, LOOK UP - EAFIT}
+  \LARGE\textbf{\center October 3, 2015}
+  \vspace*{\fill}
+  \LARGE\textbf{\center General Comments}
+  \begin{itemize}
+    \item This set has 7 problems.
+    \item The contest has a total duration of 180 minutes.
+    \item The scoreboard will be frozen after 150 minutes.
+    \item Submissions answers won't be known if they were made after 170 minutes.
+    \item If you are coding in Java, remember that the source file and the class containing the
+          $main$ method should be named as described in the problem statement.
+    \item If your are using Java, \textbf{DO NOT} include any package in your source file.
+    \item All problems were taken from several \textit{Red de Programación Competitiva} contests.
+    \item Good luck and enjoy!
+  \end{itemize}
+  \quad \\ \quad \\
+  \vspace*{\fill}
+\end{center}
+\newpage
+
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+  \LARGE{Page intentionally left (almost) in blank.}
+\end{center}
+\vspace*{\fill}
+\newpage
+
+\input texts/dice.tex
+\input texts/primes.tex
+\input texts/tridu.tex
+\input texts/sort.tex
+\input texts/bus.tex
+\input texts/factorial.tex
+\input texts/fox.tex
+
+\end{document}
