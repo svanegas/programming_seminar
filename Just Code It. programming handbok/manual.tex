@@ -39,7 +39,7 @@
 
  \section{Cosas para tener en cuenta}
 	\begin{itemize}
-		\item Si la respuesta de un problema es un número de punto flotante redondeado y está dando $Wrong Answer$, ensayar 
+		\item Si la respuesta de un problema es un número de punto flotante redondeado y está dando $Wrong Answer$, ensayar
 		         sumarle un épsilon a la respuesta, es decir, sumarle EPS (siendo EPS por lo general 1e-9).
 		\item Recordar que para redondear un número de punto flotante se debe usar el parámetro $\%.xf$ (donde x es la cantidad de cifras)
 		         en la función $printf$.
@@ -54,20 +54,20 @@
 		El BFS también halla la distancia más corta entre $s$ y los demás nodos si las aristas tienen todas peso 1.\\
 		Complejidad: $O(n+m)$ donde $n$ es el número de nodos y $m$ es el número de aristas.\\
 		\source{./src/bfs.cpp}
-		
+
 	\subsection{DFS}
 		Algoritmo de recorrido de grafos en profundidad que empieza visita todos los nodos del grafo.\\
 		El algoritmo puede ser modificado para que retorne información de los nodos según la necesidad del problema.\\
 		El grafo tiene un ciclo $\leftrightarrow$ si en algún momento se llega a un nodo marcado como gris.\\
 		Complejidad: $O(n+m)$ donde $n$ es el número de nodos y $m$ es el número de aristas.\\
 		\source{./src/dfs.cpp}
-		
+
 	\subsection{Ordenamiento topológico}
 		Dado un grafo no cíclico y dirigido (DAG), ordena los nodos linealmente de tal forma que si existe una arista entre los nodos $u$ y $v$ entonces $u$ aparece antes que $v$ en el ordenamiento.\\
 		Este ordenamiento se puede ver como una forma de poner todos los nodos en una línea recta y que las aristas vayan todas de izquierda a derecha.\\
 		Complejidad: $O(n+m)$ donde $n$ es el número de nodos y $m$ es el número de aristas.
 		\source{./src/ordenamiento_topologico.cpp}
-		
+
 	\subsection{Componentes fuertemente conexas}
 		Dado un grafo dirigido, calcula la componente fuertemente conexa (SCC) a la que pertenece cada nodo.\\
 		Para cada pareja de nodos $u, v$ que pertenecen a una misma SCC se cumple que hay un camino de $u$ a $v$ y de $v$ a $u$.\\
@@ -86,13 +86,13 @@
 				\item $current_scc$ = id de la componente actual siendo descubierta. (Inicializar en 0)
 				\source{./src/tarjan.cpp}
 			\end{itemize}
-	
+
 	\subsection{Algoritmo de Dijkstra}
 		Dado un grafo con pesos \textbf{no negativos} en las aristas, halla la mínima distancia entre una fuente $s$ y los demás nodos.\\
 		Al heap se inserta primero la distancia y luego en nodo al que se llega. Si se quieren modificar los pesos por \verb|long long| o por \verb|double| se debe cambiar en los tipos de dato \verb|dist_node| y \verb|edge|.\\
 		Complejidad: $O((n+m) \operatorname{log} n)$ donde $n$ es el número de nodos y $m$ es el número de aristas.\\
 		\source{./src/dijkstra.cpp}
-		
+
 	\subsection{Algoritmo de Bellman-Ford}
 		Dado un grafo con pesos cualquiera, halla la mínima distancia entre una fuente $s$ y los demás nodos.\\
 		Si hay un ciclo de peso negativo en el grafo, el algoritmo lo indica.\\
@@ -100,23 +100,23 @@
 		Tener en cuenta que si el nodo es inalcanzable la distancia que resulta en dicho nodo siempre será infinito.\\
 		Si el problema es como $Haunted$ $Graveyard$, donde los niños querian salir del cementerio lo más rápido posible (no querian quedarse dando vueltas así fueran ciclos negativos) entonces no deberia poner aristas en el nodo de salida.\\
 		\source{./src/bellman_ford.cpp}
-	
+
 	\subsection{Algoritmo de Floyd-Warshall}
 		Dado un grafo con pesos cualquiera, halla la mínima distancia entre cualquier para de nodos.\\
 		Si este algoritmo es muy lento para el problema ejecutar $n$ veces el algoritmo de Dijkstra o de Bellman-Ford según el caso.\\
 		Complejidad: $O(n^3)$ donde $n$ es el número de nodos.\\ \quad \\
-		Casos base: 
+		Casos base:
 		$\verb|d[i][j]| =
 			\begin{cases}
 				0       &\text{\quad si } i = j\\
 				w_{i,j} &\text{\quad si existe una arista entre $i$ y $j$}\\
 				+\infty &\text{\quad en otro caso}
 			\end{cases}$ \\
-			
+
 		\quad \\ \textbf{Nota:} Utilizar el tipo de dato apropiado (\verb|int|, \verb|long long|, \verb|double|) para \verb|d| y para $+\infty$ según el problema.
-		
+
 		\source{./src/floyd-warshall.cpp}
-		
+
 		\subsubsection{Clausura transitiva}
 		Dado un grafo cualquiera, hallar si existe un camino desde $i$ hasta $j$ para cualquier pareja de nodos $i, j$\\ \quad \\
 		Casos base:
@@ -127,7 +127,7 @@
 				\verb|false|   &\text{\quad en otro caso}
 			\end{cases}$ \\ \quad \\
 		Caso recursivo: \verb|d[i][j] = d[i][j] or (d[i][k] and d[k][j]);|
-		
+
 		\subsubsection{Minimax}
 		Dado un grafo con pesos, hallar el camino de $i$ hasta $j$ donde la arista más grande del camino sea lo más pequeña posible.\\
 		Ejemplos: Que el peaje más caro sea lo más barato posible, que la autopista más larga sea lo más corta posible.\\ \quad \\
@@ -139,7 +139,7 @@
 				+\infty   &\text{\quad en otro caso}
 			\end{cases}$ \\ \quad \\
 		Caso recursivo: \verb|d[i][j] = min( d[i][j], max (d[i][k], d[k][j]) );|
-		
+
 		\subsubsection{Maximin}
 		Dado un grafo con pesos, hallar el camino de $i$ hasta $j$ donde la arista más pequeña del camino sea lo más grande posible.\\
 		Ejemplos: Que el trayecto menos seguro sea lo más seguro posible, que la autopista de menos carriles tenga la mayor cantidad de carriles.\\ \quad \\
@@ -151,14 +151,14 @@
 				-\infty   &\text{\quad en otro caso}
 			\end{cases}$ \\ \quad \\
 		Caso recursivo: \verb|d[i][j] = max( d[i][j] , min(d[i][k], d[k][j]) )|
-		
-	
+
+
 	\subsection{Algoritmo de Prim}
 	Dado un grafo no dirigido y conexo, retorna el costo del árbol de mínima expansión de ese grafo.\\
 	El costo del árbol de mínima expansión también se puede ver como el mínimo costo de las aristas de manera que haya un camino entre cualquier par de nodos.\\
 	Complejidad: $O(m \operatorname{log} n)$ donde $n$ es el número de nodos y $m$ es el número de aristas.\\
 		\source{./src/prim.cpp}
-	
+
 	\subsection{Algoritmo de Kruskal}
 		\subsubsection{Union-Find}
 		Union-Find es una estructura de datos para almacenar una colección conjuntos disjuntos (no tienen elementos en común) que cambian dinámicamente.\\
@@ -166,14 +166,14 @@
 		Inicialmente se tiene una colección donde cada elemento es un conjunto unitario.\\
 		Complejidad aproximada: $O(m)$ donde $m$ el número total de operaciones de \verb|initialize|, \verb|union| y \verb|join| realizadas.\\
 		\source{./src/union-find.cpp}
-		
+
 		\subsubsection{Algoritmo de Kruskal}
 		Dado un grafo no dirigido y conexo, retorna el costo del árbol de mínima expansión de ese grafo.\\
 		El costo del árbol de mínima expansión también se puede ver como el mínimo costo de las aristas de manera que haya un camino entre cualquier par de nodos.\\
 		Utiliza Union-Find para ver rápidamente qué aristas generan ciclos.\\
 		Complejidad: $O(m\operatorname{log} n)$ donde $n$ es el número de nodos y $m$ es el número de aristas.\\
 		\source{./src/kruskal.cpp}
-		
+
 	\subsection{Algoritmo de máximo flujo}
 		Dado un grafo con capacidades enteras, halla el máximo flujo entre una fuente $s$ y un sumidero $t$.\\
 		Como el máximo flujo es igual al mínimo corte, halla también el mínimo costo de cortar aristas de manera que $s$ y $t$ queden desconectados.\\
@@ -216,17 +216,17 @@ Entonces la solución sería, utilizando $MaxFlow$:\\
 			Imprime los divisores de un número (cuidado que no lo hace en orden).\\
 			Complejidad: $O(\sqrt{n})$ donde $n$ es el número.\\
 			\source{./src/divisors.cpp}
-	
+
 	\subsection{Máximo común divisor y mínimo común múltiplo}
 	Para hallar el máximo común divisor entre dos números \verb|a| y \verb|b| ejecutar el comando \verb|__gcd(a, b)|.\\
 	Para hallar el mínimo común múltiplo: \quad $ \displaystyle\operatorname{lcm}(a, b) = \frac{|a \cdot b|}{\operatorname{gcd}(a,b)}$
-	
+
 	\subsection{Criba de Eratóstenes}
 	Encuentra los primos desde 1 hasta un límite $n$.\\
 	\verb|sieve[i]| es falso sí y solo sí i es un número primo.\\
 	Complejidad: $O(n)$ donde $n$ es el límite superior.\\
 	\source{./src/sieve.cpp}
-	
+
 	\subsection{Factorización prima de un número}
 	Halla la factorización prima de un número $a$ positivo. Si $a$ es negativo llamar el algoritmo con $|a|$ y agregarle -1 a la factorización.\\
 	Se asume que ya se ha ejecutado el algoritmo para generar los primos hasta al menos $\sqrt{a}$.\\
@@ -234,7 +234,7 @@ Entonces la solución sería, utilizando $MaxFlow$:\\
 	Utiliza el hecho de que en la factorización prima de $a$ aparece máximo un primo mayor a $\sqrt{a}$.\\
 	Complejidad aproximada: $O(\sqrt{a})$\\
 	\source{./src/factorization.cpp}
-	
+
 	\subsection{Exponenciación logarítmica}
 		\subsubsection{Propiedades de la operación módulo}
 		\begin{itemize}
@@ -243,28 +243,28 @@ Entonces la solución sería, utilizando $MaxFlow$:\\
 			\item $(a \cdot b) \operatorname{mod} n = ((a \operatorname{mod} n) \cdot (b\operatorname{mod} n)) \operatorname{mod} n$
 			\item $\displaystyle\left(\frac{a}{b} \right) \operatorname{mod} n \neq \left(\frac{a \operatorname{mod} n}{b\operatorname{mod} n}\right) \operatorname{mod} n$
 		\end{itemize}
-		
+
 		\subsubsection{Big mod}
 		Halla rápidamente el valor de $b^{\,p} \operatorname{mod} m$ para $0 \leq b,p,m \leq 2147483647$\\
-		Si se cambian los valores por \verb|long long| los límites se cambian por $0 \leq b,p \leq 9223372036854775807$ y $1 \leq m \leq 3037000499$.\\ 
+		Si se cambian los valores por \verb|long long| los límites se cambian por $0 \leq b,p \leq 9223372036854775807$ y $1 \leq m \leq 3037000499$.\\
 		Complejidad: $O(\operatorname{log} p)$\\
 		\source{./src/bigmod.cpp}
-	
+
 	\subsection{Combinatoria}
 		\subsubsection{Coeficientes binomiales}
 		Halla el valor de $\binom{n}{k}$ para $0 \leq k \leq n \leq 66$. Para $n > 66$ los valores comienzan a ser muy grandes y no caben en un \verb|long long|.\\
 		Complejidad: $O(n^2)$\\
 		\source{./src/binomial.cpp}
-		
+
 		\subsubsection{Propiedades de combinatoria}
 		\begin{itemize}
 			\item El número de permutaciones de $n$ elementos diferentes es $n!$
 			\item El número de permutaciones de $n$ elementos donde hay $m_1$ elementos repetidos de tipo 1, $m_2$ elementos repetidos de tipo 2,~\ldots, $m_k$ elementos repetidos de tipo $k$ es $$\frac{n!}{m_1! m_2! \cdots m_k!} $$
 			\item El número de permutaciones de $k$ elementos diferentes tomados de un conjunto de $n$ elementos es $$ \frac{n!}{(n-k)!} = k! \binom{n}{k}$$
 		\end{itemize}
-		
-		
-	
+
+
+
 \section{Programación dinámica}
 	\subsection{Longest increasing subsequence}
 		Halla la longitud de la subsecuencia creciente más larga que hay en un arreglo (también se puede usar con strings).
@@ -347,7 +347,7 @@ Complejidad: $O(n \times W)$ donde $n$ es el número de objetos y $W$ es la capa
 	\subsection{Longest Palindromic Subsequence}
 		Dado un string, encontrar el tamaño de la subsecuencia (no necesariamente continua). Por ejemplo  para \texttt{BBABCBCAB} la respuesta es 7, porque \texttt{BABCBAB} es la subsecuencia palindrómica más larga.
 		\source{./src/longest_palindromic_subsequence.cpp}
-	
+
 \section{Strings}
 	\subsection{Algoritmo de KMP}
 		Encuentra si el string \verb|needle| aparece en en string \verb|haystack|.\\
@@ -359,7 +359,7 @@ Complejidad: $O(n \times W)$ donde $n$ es el número de objetos y $W$ es la capa
 	\subsection{Algoritmo de Booth - Lexicographically minimal string rotation}
 		Encuentra la rotación de un string que contiene el menor orden lexicográfico de todas las rotaciones posibles. Por ejemplo, la menor rotación lexicográfica de \texttt{bbaaccaadd} sería \texttt{aaccaaddbb}, y de \texttt{abcdeabcdea} sería \texttt{aabcdeabcde}. \\
 		El algoritmo concatena el string a sí mismo y computa una tabla basándose en el algoritmo de KMP.\\
-		El método devuelve el \textbf{índice en base 0 a primera letra correspondiente a la mejor rotación}, si se necesita el string completo se deberá utilizar substring para reconstruirlo: \texttt{str.substr(ind, str.size()) + str.substr(0, ind)}\\		
+		El método devuelve el \textbf{índice en base 0 a primera letra correspondiente a la mejor rotación}, si se necesita el string completo se deberá utilizar substring para reconstruirlo: \texttt{str.substr(ind, str.size()) + str.substr(0, ind)}\\
 Complejidad: $O(n)$ donde $n$ es el tamaño del string.
 		\source{./src/booths.cpp}
 
@@ -385,9 +385,18 @@ If the string is smaller the “empty” positions will be filled with “whites
 
 \section{Otros}
 	\subsection{Binary Search}
-		Permite buscar un elemento ($key$) en un arreglo \textbf{ordenado} ($arr$). Retorna el índice del valor menor o igual al buscado.
+		Permite buscar un elemento ($key$) en un arreglo \textbf{ordenado} ($arr$).
 		Complejidad: $O(n \log_2 n)$ donde $n$ es la cantidad de elementos del arreglo.\\
-		\source{./src/binarySearch.cpp}
+		\subsubsection{Traditional algorithm}
+			Returns the index of some element that is equal to the given value (if there are multiple
+			elements, it returns some arbitrary one).
+			\source{./src/binary_search.cpp}
+		\subsubsection{Lower bound}
+			Returns the leftmost place where the given element can be correctly inserted.
+			\source{./src/lower_bound.cpp}
+		\subsubsection{Upper bound}
+			Returns the rightmost place where the given element can be correctly inserted.
+			\source{./src/upper_bound.cpp}
 	\subsection{BitSet}
 		Almacena bits, simula un array de booleanos, optimizando el espacio, cada elemento puede ser accedido por el operador $[$ $]$\\
 		\source{./src/bitset.cpp}
@@ -401,8 +410,8 @@ If the string is smaller the “empty” positions will be filled with “whites
 		Encuentra el área rectangular más grande posible en un histograma, donde el rectángulo es determinado por un número de barras continuas. Se asume que todas las barras tienen el mismo ancho de 1 unidad. \\
 		Complejidad: $O(n)$ donde $n$ es la cantidad de barras en el histograma.
 		\source{./src/largest_rectangle.cpp}
-		
-	
+
+
 
 \section{Struct}
 	Las estructuras en C++ son muy útiles a la hora de hacer algún tipo de dato muy específico o usar funciones de comparación personalizadas
@@ -417,6 +426,6 @@ If the string is smaller the “empty” positions will be filled with “whites
 	\subsection{Strings con arreglo de caracteres}
 	Para lograr una implementación eficiente, se pueden trabajar los strings como arreglo de caracteres, es decir, como en C, existen varias funciones que pueden ser útiles, NOTA: no todas las funciones se encuentran en el ejemplo.
 	\source{./src/getsScanfGetline.cpp}
-	
+
 
 \end{document}
