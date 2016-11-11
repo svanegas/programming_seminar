@@ -265,7 +265,7 @@ Entonces la solución sería, utilizando $MaxFlow$:\\
 
 
 
-\section{Programación dinámica}
+\section{Programación Dinámica}
   \subsection{Longest increasing subsequence}
     Halla la longitud de la subsecuencia creciente más larga que hay en un arreglo (también se puede usar con strings).
     \subsubsection{Orden cuadrático}
@@ -354,6 +354,13 @@ Complejidad: $O(n \times W)$ donde $n$ es el número de objetos y $W$ es la capa
     (En cuanto espacios en blanco)
     Complejidad: $O(n^2)$.
     \source{./src/text_justification.java}
+  \subsection{Burst Balloons}
+    Dados $n$ globos, numerados de $0$ a $n-1$, cada globo tiene un número. Si se explota el globo
+    $i$, se obtiene puntaje de $nums[i - 1] * nums[i] * nums[i + 1]$. Cuando se explota el globo
+    $i$, los globos $i - 1$ y $i + 1$ pasan a ser adyacentes. Encontrar el máximo puntaje que se
+    puede obtener explotando los globos en un determinado orden.\\
+    Complejidad: Tiempo - $O(n^3)$, espacio - $O(n^2)$.
+    \source{./src/burst_balloons.cpp}
 
 \section{Geometría}
   \subsection{Closest pair of points in a plane}
