@@ -369,6 +369,16 @@ Complejidad: $O(n \times W)$ donde $n$ es el número de objetos y $W$ es la capa
       Donde $n$ es el tamaño del texto y $m$ el tamaño del patrón.\\
       \textbf{NOTA:} Se puede aplicar un preprocesamiento para quitar $*$ consecutivos.
     \source{./src/wildcard_match.cpp}
+  \subsection{Maximum profit - Best time to buy and sell stock}
+    Se tiene un arreglo donde el $i_{th}$ elemento es el precio de un stock en el día $i$.
+    Determina la ganancia máxima cuando se pueden completar a lo sumo $k$ transacciones.\\
+    \textbf{NOTA:} Antes de comprar un stock se tiene que vender lo que se ha comprado. Es decir,
+    si el número máximo de transacciones es $1$, la ganancia es $0$ (solo se podría comprar sin
+    vender, entonces mejor no compro ni mierda).\\
+    Complejidad: Tiempo - $O(days^2)$, espacio - $O(days)$.
+      \emph{\textbf{Hint:} si $k$ es mayor a los días, no va a mejorar la respuesta, por eso se
+      toma $k$ como máximo el número de días.}
+    \source{./src/maximum_profit.cpp}
 
 \section{Geometría}
   \subsection{Closest pair of points in a plane}
