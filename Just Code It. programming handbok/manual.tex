@@ -29,7 +29,7 @@
 
 \title{Manual de algoritmos para maratones de programación}
 \author{Just Code It.}
-\date{6 de septiembre de 2014}
+\date{12 de noviembre de 2016}
 \maketitle
 
 \tableofcontents
@@ -263,8 +263,6 @@ Entonces la solución sería, utilizando $MaxFlow$:\\
       \item El número de permutaciones de $k$ elementos diferentes tomados de un conjunto de $n$ elementos es $$ \frac{n!}{(n-k)!} = k! \binom{n}{k}$$
     \end{itemize}
 
-
-
 \section{Programación Dinámica}
   \subsection{Longest increasing subsequence}
     Halla la longitud de la subsecuencia creciente más larga que hay en un arreglo (también se puede usar con strings).
@@ -361,6 +359,16 @@ Complejidad: $O(n \times W)$ donde $n$ es el número de objetos y $W$ es la capa
     puede obtener explotando los globos en un determinado orden.\\
     Complejidad: Tiempo - $O(n^3)$, espacio - $O(n^2)$.
     \source{./src/burst_balloons.cpp}
+  \subsection{Wildcard Matching}
+    Determina si un texto cumple con un patrón que puede contener $?$ y $*$, donde:\\
+    \begin{itemize}
+      \item $?$ \textit{matchea} cualquier caracter (exactamente uno).
+      \item $*$ \textit{matchea} cualquier secuencia de caracteres. (Incluyendo vacío)\\
+    \end{itemize}
+    Complejidad: Tiempo - $O(n \times m)$, espacio - $O(n)$.
+      Donde $n$ es el tamaño del texto y $m$ el tamaño del patrón.\\
+      \textbf{NOTA:} Se puede aplicar un preprocesamiento para quitar $*$ consecutivos.
+    \source{./src/wildcard_match.cpp}
 
 \section{Geometría}
   \subsection{Closest pair of points in a plane}
